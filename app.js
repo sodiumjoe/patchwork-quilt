@@ -29,7 +29,7 @@ app.get('/*', function(req, res){
         if(err){
             console.log(err);
         }else if(doc){
-            console.log(doc.title);
+            console.log(doc.body);
             res.render('doc.jade', {
                 title: doc.title,
                 body: doc.body

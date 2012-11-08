@@ -1,4 +1,6 @@
 extends ./layout
 
 block content
-  body!= body
+  h1 #{title}
+  div#content
+    !{body}
