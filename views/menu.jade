@@ -12,7 +12,7 @@ mixin parseMenu(menuArr, level)
         else
           if item.path == "overview"
             a(href="/")
-              h6 AppFog Docs
+              h3 AppFog Docs
           else
             a(href="/#{item.path}")
-              h6!= item.title
+              h6(class="head")!= item.title
