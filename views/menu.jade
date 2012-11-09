@@ -10,5 +10,9 @@ mixin parseMenu(menuArr, level)
               i.accordion-icon.icon-chevron-right
           mixin parseMenu(item.children, level+1)
         else
-          a(href="/#{item.path}")
-            h6!= item.title
+          if item.path == "overview"
+            a(href="/")
+              h6 AppFog Docs
+          else
+            a(href="/#{item.path}")
+              h6!= item.title

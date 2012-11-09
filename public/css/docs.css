@@ -218,10 +218,11 @@ div#docs_menu h6 {
 }
 
 div#docs_menu h6.head0 {
-    padding-top: 20px;
 }
 
-div#docs_menu li {
+div#docs_menu ul.level1 {
+    height: 0;
+    display: none;
 }
 
 .collapse {
