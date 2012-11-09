@@ -3,7 +3,7 @@ div#docs_menu.span3
 
 mixin parseMenu(menuArr, level)
   li
-    ul(id="collapse#{level}", class="level#{level}")
+    ul(class="level#{level}")
       each item, i in menuArr
         if item.children
           li

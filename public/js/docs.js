@@ -1,5 +1,5 @@
 $(function() {
-    $('#collapse0').collapsible({
+    $('#docs_menu').collapsible({
         effect: "slide",
         initialCollapse: true
     });
