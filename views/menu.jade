@@ -1,18 +1,13 @@
 div#docs_menu.span3
-    +parseMenu(menu, 0)
+  +parseMenu(menu, 0)
 
 mixin parseMenu(menuArr, level)
-  ul(class="level#{level}")
-    each item, i in menuArr
-      li
+  li
+    ul(id="collapse#{level}", class="level#{level}")
+      each item, i in menuArr
         if item.children
-          h6(class="head#{level}")!= item.title
-              i.accordion-icon.icon-chevron-right
-          mixin parseMenu(item.children, level+1)
+          li!= item.title
+            mixin parseMenu(item.children, level+1)
         else
-          if item.path == "overview"
-            a(href="/")
-              h3 AppFog Docs
-          else
-            a(href="/#{item.path}")
-              h6(class="head")!= item.title
+          li!= item.title
+           // a(href="/#{item.path}")!= item.title
