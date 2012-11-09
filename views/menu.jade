@@ -1,4 +1,5 @@
 div#docs_menu.span3
+  h6 Search
   +parseMenu(menu, 0)
 
 mixin parseMenu(menuArr, level)
@@ -6,8 +7,13 @@ mixin parseMenu(menuArr, level)
     ul(id="collapse#{level}", class="level#{level}")
       each item, i in menuArr
         if item.children
-          li!= item.title
+          li
+            a.menu-parent(href="javascript:void(0);")
+              h6!= item.title
+                i.accordion-icon.icon-chevron-right
             mixin parseMenu(item.children, level+1)
         else
-          li!= item.title
-           // a(href="/#{item.path}")!= item.title
+          li
+            a(href="/#{item.path}")
+              if item.path != "overview"
+                h6!= item.title
