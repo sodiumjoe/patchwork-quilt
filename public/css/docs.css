@@ -200,6 +200,30 @@ ol.linenums:first-child {
 	counter-reset: customlistcounter;
 }
 
+div#docs_menu {
+    margin: 0 -30px 0 0;
+    padding: 30px -0px 0 0;
+    width: 300px;
+    list-style: none;
+}
+
+div#docs_menu ul {
+    list-style-type: none;
+    border-bottom: 1px solid #E2EEF6;
+    padding: 0 0 30px 0;
+}
+
+div#docs_menu h6 {
+    padding-left: 30px;
+}
+
+div#docs_menu h6.head0 {
+    padding-top: 20px;
+}
+
+div#docs_menu li {
+}
+
 .collapse {
 	position: relative;
 	height: 0;
@@ -211,37 +235,10 @@ ol.linenums:first-child {
 	transition: height 0.35s ease;
 }
 
-.collapse.in {
-	height: auto;
-}
-
-div#accordion2 {
-    margin-left: 0;
-}
-
-i.icon-chevron-right.accordion-icon {
-	padding-left: 15px;
-}
-
-i.icon-chevron-down.accordion-icon {
-	padding-left: 11px;
-}
-
-div.accordion-inner > li > a {
-	background-color: white;
-	border-left: 1px solid #E2EEF6;
-}
-
-div.accordion-inner > li > a.on {
-	background-color: #E2EEF6;
-}
-
 .table td {
 	width: 50%;
 	padding: 20px 0 20px 20px;
-
 }
-
 
 td code {
 	font-size: 11px;
