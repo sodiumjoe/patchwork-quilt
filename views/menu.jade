@@ -1,5 +1,4 @@
 div#docs_menu.span3
-  h6 Search
   +parseMenu(menu, 0)
 
 mixin parseMenu(menuArr, level)
@@ -13,7 +12,13 @@ mixin parseMenu(menuArr, level)
                 i.accordion-icon.icon-chevron-right
             mixin parseMenu(item.children, level+1)
         else
-          li
-            a(href="/#{item.path}")
-              if item.path != "overview"
-                h6!= item.title
+          if item.path == path
+            li.active
+              a(href="/#{item.path}")
+                if item.path != "overview"
+                  h6!= item.title
+          else
+            li
+              a(href="/#{item.path}")
+                if item.path != "overview"
+                  h6!= item.title

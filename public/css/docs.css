@@ -199,6 +199,12 @@ ol.linenums:first-child {
 	counter-reset: customlistcounter;
 }
 
+/* Docs Menu */
+
+div#docs_menu a {
+    display: block;
+}
+
 div#docs_menu {
     margin: 0 -30px 0 0;
     padding: 30px -0px 0 0;
@@ -207,7 +213,7 @@ div#docs_menu {
 }
 
 div#docs_menu a:hover {
-    background-color: black;
+    background-color: #E2EEF6;
 }
 
 div#docs_menu ul {
@@ -225,7 +231,7 @@ div#docs_menu ul.level0 {
 }
 
 div#docs_menu ul {
-    margin: 10px 20px;
+    margin: 10px 30px;
     padding: 10px 0;
 }
 
@@ -234,16 +240,20 @@ div#docs_menu ul.level1 {
 }
 
 div#docs_menu ul h6 {
-    padding: 10px 20px;
+    padding: 10px 30px;
     font-size: 16px;
 }
 
 div#docs_menu ul.level2 {
-    background-color: #E2EEF6;
+    background-color: #EEF6FB;
 }
 
 i.accordion-icon {
     margin-left: 5px;
+}
+
+div#docs_menu ul.level0 li.active {
+    background-color: #E2EEF6;
 }
 
 .table td {
@@ -276,4 +286,8 @@ p > code {
 	border: 1px solid #E2EEF6;
 	background: #EEF6FB;
 	font-size: 13px;
+}
+
+div.content_column h2 {
+    font-size: 32px;
 }
