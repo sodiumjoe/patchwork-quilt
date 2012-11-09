@@ -1,3 +1,29 @@
-head
-  title!= title
-  link(rel="stylesheet", href="http://appfog.com/css/style.css")
+div#header
+  div.container
+    a(href="http://appfog.com/", id="app_fog")
+      img(src="http://appfog.com/img/app-fog.png", width="189", height="47", alt="App Fog")
+    ul(id="main_nav")
+      li(id="nproducts")
+        a(href="#", title="Products", class="parent")
+          span Products
+        ul
+          li
+            a(href="http://appfog.com/products/appfog") AppFog
+          li
+            a(href="http://appfog.com/products/phpfog") PHP Fog
+      li(id="npricing")
+        a(href="#", title="Pricing", class="parent")
+          span Pricing
+        ul
+          li
+            a(href="https://console.appfog.com/pricing") AppFog
+          li
+            a(href="http://appfog.com/products/phpfog/pricing/") PhpFog
+      li(id="nshowcase")
+        a(href="http://appfog.com/showcase/", title="Showcase") Showcase
+      li(id="nabout")
+        a(href="http://appfog.com/about/", title="About") About
+      li(id="nsupport")
+        a(href="http://appfog.com/support/", title="Support") Support
+      li(id="nblog")
+        a(href="http://blog.appfog.com/", title="Blog") Blog

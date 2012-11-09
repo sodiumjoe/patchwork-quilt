@@ -1,6 +1,21 @@
 extends ./layout
 
 block content
-  h1 #{title}
-  div#content
-    !{body}
+  div.container
+    div#top_bar.row.gray_blue.margin_bottom
+      div.span12
+        a(href="/")
+          h1(class="title") AppFog Docs
+        ul(id="secondary_nav")
+          li
+            a(href="http://docs.phpfog.com") PHP Fog Docs
+
+    div#billboard.row.gray.gradient
+      div.span12.intro
+        h2!= title
+    div#content.row.white
+      include menu
+      div.span8.content_column
+        div.row
+          div.span8
+            !{body}

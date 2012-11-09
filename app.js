@@ -7,7 +7,16 @@ var express = require('express'),
         title: String,
         body: String
     }),
-    Doc = db.model('document', docsColl);
+    menuColl = new mongoose.Schema({
+        menuArray: Array
+    }),
+    Doc = db.model('document', docsColl),
+    Menu = db.model('menu', menuColl);
+
+var menu = [];
+Menu.findOne({"title": "menu"}, function(err, menuArr){
+    menu = menuArr.menuArray;
+});
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
@@ -16,23 +25,18 @@ db.once('open', function () {
 
 app.set('views', __dirname + '/views');
 
-app.get('/', function(req, res){
-    res.render('index.jade', {title: 'Hello'})
-});
-
-app.get('/favicon.ico', function(req, res){
-    
-});
+app.use('/static', express.static(__dirname + '/public'));
+app.use('/img', express.static(__dirname + '/public/img'));
 
 app.get('/*', function(req, res){
     Doc.findOne({"path": req.url.substring(1)}, function(err, doc){
         if(err){
             console.log(err);
         }else if(doc){
-            console.log(doc.body);
             res.render('doc.jade', {
                 title: doc.title,
-                body: doc.body
+                body: doc.body,
+                menu: menu
             });
         }else{
             console.log(req.url + ' not found');

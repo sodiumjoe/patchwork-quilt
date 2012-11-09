@@ -1,0 +1,43 @@
+div.span3.sidebar.padding.accordion
+  +parseMenu(menu)
+//div#accordion2.span3.sidebar.padding.accordion
+//  each item, i in menu
+//    if item.children
+//      div.accordion-group
+//        div.row.border-bottom.accordion-heading
+//          div.span3
+//            a.accordion-toggle(data-toggle="collapse", data-parent="#accordion2", href="#collapse#{i}")
+//              h6
+//                !{item.title}
+//                i.accordion-icon.icon-chevron-right
+//        ul.pages.accordion-body.collapse.in(style="height: auto;", id="#collapse#{i}")
+//          div.accordion-inner
+//            each subitem, j in item.children
+//              if subitem.children
+//                li
+//                  a.accordion-toggle(data-toggle="collapse", data-parent="collapse#{i}", href="#collapse#{j}")!= subitem.title
+//                    i.accordion-icon.icon-chevron-right
+//                  ul
+//                    each subsubitem, k in subitem.children
+//                      li
+//                        a(href="subsubitem.path")!=subsubitem.title
+//              else
+//                li
+//                  a(href="#{subitem.path}")!= subitem.title
+//    else
+//      div.row.border-bottom
+//        div.span3
+//          a(href="#{item.path}")
+//            h6!= item.title
+
+mixin parseMenu(menuArr)
+  ul
+    each item, i in menuArr
+      li
+        if item.children
+          h6!= item.title
+              i.accordion-icon.icon-chevron-right
+          mixin parseMenu(item.children)
+        else
+          a(href="/#{item.path}")
+            h6!= item.title
