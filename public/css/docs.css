@@ -98,6 +98,11 @@ float: left;
 	padding-top: 0;
 }
 
+#search-form {
+    padding: 10px 30px;
+    margin: 0 0 20px;
+}
+
 input.search {
 	-webkit-border-radius: 0;
 	-webkit-border-top-right-radius: 3px;
@@ -140,6 +145,10 @@ input.search {
 	padding: 6px 15px;
 	width: 154px;
 	margin-bottom: 30px;
+}
+
+#search-results a {
+    text-decoration: none;
 }
 
 img.screenshot {
@@ -227,7 +236,7 @@ div#docs_menu h3 {
 }
 
 div#docs_menu ul.level0 {
-    margin: 0;
+    margin: 10px 0;
 }
 
 

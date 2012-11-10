@@ -18,6 +18,15 @@ Menu.findOne({"title": "menu"}, function(err, menuArr){
     menu = menuArr.menuArray;
 });
 
+exports.search = function(req, res){
+    res.render('doc.jade', {
+        title: 'Search',
+        body: '<div id="search-results"><h2>Search results for "' + req.query.q + '":</h2><div id="inner"></div></div>',
+        menu: menu,
+        path: '/search'
+    });
+};
+
 exports.pages = function(req, res){
     var pathArr = req.url.substring(1).split('/');
     if(req.url === '/'){
@@ -69,4 +78,4 @@ exports.pages = function(req, res){
             });
         }
     }
-}
+};

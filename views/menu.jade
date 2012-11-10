@@ -1,24 +1,27 @@
 div#docs_menu.span3
+  form#search-form(action="/search")
+    input#search(type="search", placeholder="Search", name="q", size="30")
+    input.btn.gray_blue.search(type="submit", value="Go")
   +parseMenu(menu, 0)
 
 mixin parseMenu(menuArr, level)
-  li
-    ul(class="level#{level}")
-      each item, i in menuArr
-        if item.children
-          li
-            a.menu-parent(href="javascript:void(0);")
-              h6!= item.title
-                i.accordion-icon.icon-chevron-right
-            mixin parseMenu(item.children, level+1)
+  ul(class="level#{level}")
+    each item, i in menuArr
+      if item.children
+        li
+          a.menu-parent(href="javascript:void(0);")
+            h6!= item.title
+              i.accordion-icon.icon-chevron-right
+        li
+          mixin parseMenu(item.children, level+1)
+      else
+        if item.path == path
+          li.active
+            a(href="/#{item.path}")
+              if item.path != "overview"
+                h6!= item.title
         else
-          if item.path == path
-            li.active
-              a(href="/#{item.path}")
-                if item.path != "overview"
-                  h6!= item.title
-          else
-            li
-              a(href="/#{item.path}")
-                if item.path != "overview"
-                  h6!= item.title
+          li
+            a(href="/#{item.path}")
+              if item.path != "overview"
+                h6!= item.title
