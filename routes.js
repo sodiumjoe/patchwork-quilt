@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    async = require('async'),
     db = mongoose.createConnection('localhost', 'afdocs'),
     docsColl = new mongoose.Schema({
         name: String,
@@ -12,7 +13,29 @@ var mongoose = require('mongoose'),
     Doc = db.model('document', docsColl),
     Menu = db.model('menu', menuColl);
 
-var menu = [];
+var menu = [],
+    redirectList = [
+        {
+            url: "/frameworks/java",
+            redirect: "/languages/java/overview"
+        },
+        {
+            url: "/frameworks/node",
+            redirect: "/languages/node"
+        },
+        {
+            url: "/frameworks/php",
+            redirect: "/languages/php/overview"
+        },
+        {
+            url: "/frameworks/python",
+            redirect: "/languages/python/overview"
+        },
+        {
+            url: "/frameworks/ruby",
+            redirect: "/languages/ruby/overview"
+        }
+    ];
 
 Menu.findOne({"title": "menu"}, function(err, menuArr){
     menu = menuArr.menuArray;
@@ -27,55 +50,94 @@ exports.search = function(req, res){
     });
 };
 
-exports.pages = function(req, res){
-    var pathArr = req.url.substring(1).split('/');
-    if(req.url === '/'){
-        Doc.findOne({"path": "overview"}, function(err,doc){
-            if(err){
-                console.log(err);
-            }else if(doc){
-                res.render('doc.jade', {
-                    title: doc.title,
-                    body: doc.body,
-                    menu: menu,
-                    path: req.url.substring(1)
-                });
-            }else{
-                console.log(req.url + ' not found');
-                res.send(req.url + ' not found');
-            }
-        });
-    }else{
-        if(req.url[req.url.length - 1] === '/'){
-            res.redirect(301, req.url.substring(0, req.url.length - 1));
+exports.pages = function(req, res, next){
+    checkRedirectList(req, function(err, redirectObj){
+        if(err){
+            res.send(err);
+        }else if(redirectObj){
+            res.redirect(301, redirectObj.redirect);
         }else{
-            Doc.findOne({"path": req.url.substring(1)}, function(err, doc){
-                if(err){
-                    console.log(err);
-                }else if(doc){
-                    if(doc.redirect){
-                        res.redirect(301, doc.redirect);
-                    }else{
+            var pathArr = req.url.substring(1).split('/');
+            if(req.url === '/'){
+                Doc.findOne({"path": "overview"}, function(err,doc){
+                    if(err){
+                        console.log(err);
+                    }else if(doc){
                         res.render('doc.jade', {
                             title: doc.title,
                             body: doc.body,
                             menu: menu,
                             path: req.url.substring(1)
                         });
+                    }else{
+                        next(err);
                     }
+                });
+            }else{
+                if(req.url[req.url.length - 1] === '/'){
+                    res.redirect(301, req.url.substring(0, req.url.length - 1));
                 }else{
-                    Doc.findOne({"path": req.url.substring(1) + '/overview'}, function(err, doc){
+                    Doc.findOne({"path": req.url.substring(1)}, function(err, doc){
                         if(err){
                             console.log(err);
                         }else if(doc){
-                            res.redirect(301, req.url.substring(1) + '/overview');
+                            if(doc.redirect){
+                                res.redirect(301, doc.redirect);
+                            }else{
+                                res.render('doc.jade', {
+                                    title: doc.title,
+                                    body: doc.body,
+                                    menu: menu,
+                                    path: req.url.substring(1)
+                                });
+                            }
                         }else{
-                            console.log(req.url + ' not found');
-                            res.send(req.url + ' not found');
+                            Doc.findOne({"path": req.url.substring(1) + '/overview'}, function(err, doc){
+                                if(err){
+                                    console.log(err);
+                                }else if(doc){
+                                    res.redirect(301, req.url.substring(1) + '/overview');
+                                }else{
+                                    var notfound = new NotFound;
+                                    next(notfound);
+                                }
+                            });
                         }
                     });
                 }
-            });
+            }
         }
-    }
+    });
 };
+
+function checkRedirectList(req, callback){
+    var redirectObj = null;
+    async.forEach(redirectList, function(item, forCallback){
+        console.log(req.url);
+        if(req.url === item.url){
+            redirectObj = item;
+        }
+        forCallback(null);
+    }, function(err){
+        if(err){
+            callback(err, null);
+        }else{
+            callback(null, redirectObj);
+        }
+    });
+}
+
+exports.errorHandler = function(err, req, res, next){
+    res.render('doc.jade', {
+        title: '404 - Not Found',
+        menu: menu,
+        body: "<h2>Sorry, we don't have anything there.</h2>",
+        path: '/'
+    });
+}
+
+function NotFound(msg){
+    this.name = 'NotFound';
+    Error.call(this, msg);
+    Error.captureStackTrace(this, arguments.callee);
+}
