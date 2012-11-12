@@ -10,7 +10,6 @@ app.get('/img/*', function(req, res){
 });
 app.get('/search', routes.search);
 app.get('/*', routes.pages);
-
 app.use(routes.errorHandler);
 
 app.listen(process.env.VCAP_APP_PORT || 3000);

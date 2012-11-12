@@ -1,5 +1,9 @@
 head
-  title!= title
+  if (title == "AppFog Documentation")
+    title!= title
+  else
+    title
+      !{title} - AppFog Documentation
   meta(charset="utf-8")
   link(rel="stylesheet", href="http://appfog.com/css/style.css")
   link(rel="stylesheet", href="/static/css/prettify.css")
