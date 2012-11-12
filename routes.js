@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     async = require('async'),
-    db = mongoose.createConnection('localhost', 'afdocs'),
+    db = mongoose.createConnection('localhost', 'docs-mongo'),
     docsColl = new mongoose.Schema({
         name: String,
         title: String,
@@ -38,7 +38,15 @@ var menu = [],
     ];
 
 Menu.findOne({"title": "menu"}, function(err, menuArr){
-    menu = menuArr.menuArray;
+    if(err){
+        console.log(err);
+    }else{
+        if(menuArr){
+            menu = menuArr.menuArray;
+        }else{
+            console.log('no menu object in db');
+        }
+    }
 });
 
 exports.search = function(req, res){
@@ -113,7 +121,6 @@ exports.pages = function(req, res, next){
 function checkRedirectList(req, callback){
     var redirectObj = null;
     async.forEach(redirectList, function(item, forCallback){
-        console.log(req.url);
         if(req.url === item.url){
             redirectObj = item;
         }
