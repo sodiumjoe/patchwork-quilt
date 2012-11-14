@@ -1,5 +1,5 @@
 {
-    "name": "cms-front",
+    "name": "patchwork-quilt",
     "version": "0.0.1",
     "dependencies": {
         "express": ""

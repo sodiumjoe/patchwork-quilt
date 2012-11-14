@@ -1,6 +1,9 @@
 var express = require('express'),
+    config = require('./config.js'),
     app = express(),
     routes = require('./routes');
+
+console.log(config);
 
 app.set('views', __dirname + '/views');
 app.use('/static', express.static(__dirname + '/public'));
@@ -12,4 +15,4 @@ app.get('/search', routes.search);
 app.get('/*', routes.pages);
 app.use(routes.errorHandler);
 
-app.listen(process.env.VCAP_APP_PORT || 3000);
+app.listen(process.env.VCAP_APP_PORT || 3001);
