@@ -1,0 +1,64 @@
+body {
+    position: relative;
+    padding-top: 40px;
+}
+
+.jumbotron {
+    position: relative;
+    padding: 40px 0;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0,0,0,.4), 0 0 10px rgba(0,0,0,.075);
+    border-bottom: 1px solid #E5E5E5;
+    background-color: whiteSmoke;
+}
+
+.jumbotron p {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 30px;
+}
+
+.jumbotron h1 {
+    font-size: 80px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    line-height: 1;
+    text-align: center;
+    text-shadow: 0 1px 3px;
+}
+
+.masthead {
+    padding: 70px 0 80px;
+    margin-bottom: 0;
+    color: white;
+}
+
+.masthead h1 {
+    font-size: 120px;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.footer {
+    padding: 70px 0;
+    margin-top: 70px;
+    border-top: 1px solid #E5E5E5;
+    background-color: whiteSmoke;
+}
+
+.footer p {
+  margin-bottom: 0;
+  color: #777;
+}
+.footer-links {
+  margin: 10px 0;
+}
+.footer-links li {
+  display: inline;
+  padding: 0 2px;
+}
+.footer-links li:first-child {
+  padding-left: 0;
+}

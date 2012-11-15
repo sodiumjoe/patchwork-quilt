@@ -1,8 +1,7 @@
 !!! 5
 html(lang='en')
   include head
-  body#blog(onload="prettyPrint()")
-    include header
-    div#main_content
-      block content
+  body
+    include navigation
+    block content
     include footer
