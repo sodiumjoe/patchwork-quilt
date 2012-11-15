@@ -3,3 +3,4 @@ github:
   repo: patchwork
 
 assets: https://s3.amazonaws.com/joebadmo-patchwork/assets
+searchify: public_url
