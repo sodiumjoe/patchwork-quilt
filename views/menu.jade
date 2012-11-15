@@ -1,4 +1,7 @@
 div#docs_menu.span3
+  form#search-form(action="/search")
+    input#search(type="search", placeholder="Search", name="q", size="30")
+    input.btn.gray_blue.search(type="submit", value="Go")
   +parseMenu(menu, 0)
 
 mixin parseMenu(menuArr, level)

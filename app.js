@@ -1,5 +1,5 @@
 var express = require('express'),
-    config = require('./lib/config.js'),
+    conf = require('./lib/config.js'),
     app = express(),
     routes = require('./lib/routes');
 
@@ -9,6 +9,7 @@ app.use('/static', express.static(__dirname + '/public'));
 app.get('/img/*', function(req, res){
     res.redirect(301, conf.assets + req.url);
 });
+
 app.get('/search', routes.search);
 app.get('/*', routes.pages);
 app.use(routes.errorHandler);
