@@ -1,6 +1,12 @@
 extends ./layout
 
 block content
+  header.jumbotron.masthead
+    div.container
+      h1!= title
   div.container
-    h1!= title
-    !{body}
+    div.row
+      div.span3
+        include nav-side
+      div.span9.content
+        !{body}
