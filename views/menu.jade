@@ -7,21 +7,27 @@ div#docs_menu.span3
 mixin parseMenu(menuArr, level)
   ul(class="level#{level}")
     each item, i in menuArr
-      if item.children
-        li
-          a.menu-parent(href="javascript:void(0);")
-            h6!= item.title
-              i.accordion-icon.icon-chevron-right
-        li
-          mixin parseMenu(item.children, level+1)
-      else
-        if item.path == path
-          li.active
-            a(href="/#{item.path}")
-              if item.path != "overview"
-                h6!= item.title
-        else
+      if item.path != 'index'
+        if item.children
           li
-            a(href="/#{item.path}")
-              if item.path != "overview"
+            a.menu-parent(href="javascript:void(0);")
+              h6!= item.title
+                i.accordion-icon.icon-chevron-right
+          li
+            mixin parseMenu(item.children, level+1)
+        else
+          if item.path == path
+            li.active
+              a(href="/#{item.path}")
                 h6!= item.title
+          else if item.path == path + '/index'
+            li.active
+              a(href="/#{item.path.replace('/index','')}")
+                h6 Overview
+          else
+            li
+              a(href="/#{item.path.replace('/index','')}")
+                if item.path.substring(item.path.length - 5) !== 'index'
+                  h6!= item.title
+                else
+                  h6 Overview
