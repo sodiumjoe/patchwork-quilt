@@ -6,6 +6,16 @@ var express = require('express'),
 app.set('views', __dirname + '/views');
 app.use('/static', express.static(__dirname + '/public'));
 
+if(process.env.VCAP_SERVICES){
+    app.get('*', function(req, res, next){
+        if(req.headers["x-forwarded-proto"] != "https"){
+            res.redirect("https://" + req.headers.host + req.url);
+        }else{
+            next();
+        }
+    });
+}
+
 app.get('/img/*', function(req, res){
     res.redirect(301, conf.assets + req.url);
 });
