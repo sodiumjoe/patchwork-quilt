@@ -1,7 +1,12 @@
 Quilt
 =====
 
-Quilt is the presentation piece of [Patchwork](http://patchworkcms.com). It's a simple web server that serves content from a database that's updated by [Thread](https://github.com/joebadmo/patchwork-thread).
+Quilt is the presentation piece of [Patchwork](http://patchworkcms.com). It's a simple web server that serves content from a database that's updated by [Thread](https://github.com/joebadmo/patchwork-thread). It's built with: 
+
+* [Node](http://nodejs.org/)
+* [Express](http://expressjs.com/)
+* [Jade](http://jade-lang.com/)
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap/)
 
 ### Usage
 
