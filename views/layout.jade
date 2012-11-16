@@ -1,6 +1,8 @@
 !!! 5
 html(lang='en')
-  include head
+  head
+    block head
+      include head
   body#docs(onload="prettyPrint()")
     include header
     div#main_content

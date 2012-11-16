@@ -29,7 +29,7 @@ $(document).ready(function() {
         $('div#search_results p#loading').show();
         var index = 0;
 
-        var result = $.getJSON('http://844kj.api.searchify.com/v1/indexes/afdocs/search?q=' + encodeURIComponent(query) + '&fetch=title,path&snippet=text&callback=?', function(data) {
+        var result = $.getJSON(searchifyPublicURL + '/v1/indexes/afdocs/search?q=' + encodeURIComponent(query) + '&fetch=title,path&snippet=text&callback=?', function(data) {
             $('div#search-results div#inner').empty();
 
             $.each(data.results, function(index, result) {
