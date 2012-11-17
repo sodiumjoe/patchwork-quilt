@@ -1,0 +1,5 @@
+github:
+  user: appfog
+  repo: afdocs
+assets: https://s3.amazonaws.com/afdocs/assets
+searchify: https://dho6u.api.searchify.com
